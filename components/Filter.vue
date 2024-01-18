@@ -56,10 +56,10 @@ const periods = ref([
   },
 ]);
 
-const website = datasStore();
+const store = datasStore();
 
 function per(period: PeriodType): void {
-  website.changePeriod(period);
+  store.changePeriod(period);
 }
 
 function getHistory(e: Event) {
@@ -87,11 +87,11 @@ function getHistory(e: Event) {
     end: millEnd,
   };
 
-  website.changePeriod(period);
+  store.changePeriod(period);
 }
 
 onMounted(async () => {
-  website.changePeriod(periods.value[3]);
+  store.changePeriod(periods.value[3]);
 });
 </script>
 

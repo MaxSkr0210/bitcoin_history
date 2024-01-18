@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Line } from "vue-chartjs";
 
-const website = datasStore();
+const store = datasStore();
 
 const chartData = ref({
   labels: [] as string[],
@@ -45,15 +45,15 @@ const forceRender = async () => {
 };
 
 watch(
-  () => website.period,
+  () => store.period,
   async () => {
     renderComponent.value = false;
-    await website.getBitcoinHistory(
-      website.period.step,
-      website.period.start,
-      website.period.end
+    await store.getBitcoinHistory(
+      store.period.step,
+      store.period.start,
+      store.period.end
     );
-    const bitcoin = website.getBitcoin;
+    const bitcoin = store.getBitcoin;
 
     chartData.value.labels = bitcoin.map((item) => {
       return item.date;
@@ -74,7 +74,7 @@ watch(
       v-if="renderComponent"
       :data="chartData"
       :options="chartOptions"
-      :key="website.getPeriod.id" />
+      :key="store.getPeriod.id" />
   </div>
 </template>
 
